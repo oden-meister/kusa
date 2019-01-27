@@ -1,0 +1,25 @@
+{% extends 'kusa/base.html' %}
+{% load static %}
+{% block title %}KUSA-RASPBERRYPY@{{raspbid}}{% endblock %}
+{% block content %}
+    <h1>SmileI</h1>
+    {% if smileI_list %}
+    <ul>
+    {% for raspberry in smileI_list %}
+        <li>{{raspberry.smileic}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No SmileI are available.</p>
+{% endif %}
+    <h1>SmileS</h1>
+    {% if smileS_list %}
+    <ul>
+    {% for raspberry in smileS_list %}
+        <li>{{raspberry.smilesc}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No SmileS are available.</p>
+{% endif %}
+{% endblock %}

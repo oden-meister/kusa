@@ -1,0 +1,14 @@
+{% extends 'kusa/base.html' %}
+{% load static %}
+{% block title %}KUSA-RASPLIST{% endblock %}
+{% block content %}
+    {% if latest_raspb_list %}
+    <ul>
+    {% for raspberry in latest_raspb_list %}
+        <li><a href="/kusa/raspsp/{{ raspberry.id }}/">{{raspberry.raspid}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock %}
