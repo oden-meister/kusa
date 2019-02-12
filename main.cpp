@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <bits/stdc++.h>
+#include <unistd.h>
 
 cv::Mat faceFind(cv::Mat &image,std::string &cascade_file){
     cv::CascadeClassifier cascade;
@@ -16,15 +17,23 @@ cv::Mat faceFind(cv::Mat &image,std::string &cascade_file){
 }
 
 int main(){
-    cv::Mat image = cv::imread("/home/megane/Downloads/sample.jpg",cv::IMREAD_COLOR);
-    if(image.empty()){
-        std::cout << "Image file isn't found." << std::endl;
-        return 0;
+    //ここに一度のループの秒数を入力
+    double second = 10;
+    //
+    //ここにループの回数を入力(負の数で無限)
+    int time = -1;
+    //
+    for(int i = time;i != 0;i--){
+        cv::Mat image = cv::imread("/home/megane/Downloads/sample.jpg",cv::IMREAD_COLOR);
+        if(image.empty()){
+            std::cout << "Image file isn't found." << std::endl;
+            return 0;
+        }
+        std::string filename = "haarcascade_frontalface_default.xml";
+        cv::Mat detectFaceImage = faceFind(image, filename);
+        cv::imshow("detect face",detectFaceImage);
+        cv::waitKey(second*1000);
     }
-    std::string filename = "haarcascade_frontalface_default.xml";
-    cv::Mat detectFaceImage = faceFind(image, filename);
-    cv::imshow("detect face",detectFaceImage);
-    cv::waitKey(0);
-
+    std::cout << "Program is ended" << std::endl;
     return 0;
 }
