@@ -26,3 +26,6 @@ LIBS += -L/usr/lib `pkg-config --libs opencv`
 
 DISTFILES += \
     haarcascade_frontalface_default.xml
+
+HEADERS += \
+    main.h
