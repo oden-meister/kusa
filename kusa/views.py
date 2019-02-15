@@ -15,12 +15,14 @@ def raspid(request):
 
 def raspsp(request,pk):
     raspbid=raspberry.objects.get(id=pk).raspid
+    raspnum=pk
     smileI_list=raspberry.objects.get(id=pk).smilei_set.order_by('-pushed_dateI')
     smileS_list=raspberry.objects.get(id=pk).smiles_set.order_by('-pushed_dateS')
     context={
         'smileI_list':smileI_list,
         'smileS_list':smileS_list,
-        'raspbid':raspbid
+        'raspbid':raspbid,
+        'raspnum':raspnum
     }
     return render(request,'kusa/raspsp.html',context)
 

@@ -3,10 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "kusa/temp.css" %}" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="{% static "kusa/temp.js" %}"></script>
     <title>{% block title %}{% endblock %}</title>
+    <script type="text/javascript">
+        window.document.getElementsByClassName("menuval").style.visibility="hidden";
+        window.document.getElementsByClassName("menu").onclick=menuclicked();
+    </script>
 </head>
-<body>
-{% block content %}
-{% endblock %}
+<body class="bg">
+<div class="title">草が生える機械(仮)</div>
+<div class="value">
+    {% block content %}{% endblock %}
+</div>
 </body>
 </html>

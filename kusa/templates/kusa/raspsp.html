@@ -2,24 +2,29 @@
 {% load static %}
 {% block title %}KUSA-RASPBERRYPY@{{raspbid}}{% endblock %}
 {% block content %}
-    <h1>SmileI</h1>
+    <div class="topic">
+    <h1>笑顔</h1>
     {% if smileI_list %}
     <ul>
     {% for raspberry in smileI_list %}
-        <li>Count:{{raspberry.smileic}}&nbsp&nbsp&nbspMeasured time:{{raspberry.pushed_dateI}}</li>
+        <li>{{raspberry.smileic}}回&nbsp&nbsp&nbsp送信時間:{{raspberry.pushed_dateI}}</li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No SmileI are available.</p>
+    <p style="text-align: center">No SmileI are available.</p>
 {% endif %}
-    <h1>SmileS</h1>
+    </div>
+    <div class="topic">
+    <h1>笑い声</h1>
     {% if smileS_list %}
     <ul>
     {% for raspberry in smileS_list %}
-        <li>Count:{{raspberry.smilesc}}&nbsp&nbsp&nbspMeasured time:{{raspberry.pushed_dateS}}</li>
+        <li>{{raspberry.smilesc}}回&nbsp&nbsp&nbsp送信時間:{{raspberry.pushed_dateS}}</li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No SmileS are available.</p>
+    <p style="text-align: center">No SmileS are available.</p>
 {% endif %}
+    </div>
+    <div class="foot">個体名:{{ raspbid }}&nbsp&nbsp個体番号:{{ raspnum }}<a href="../../" style="position: fixed;bottom: 0px;right: 0px; font-size: 25px;">トップページへ</a></div>
 {% endblock %}
