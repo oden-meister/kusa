@@ -6,7 +6,7 @@
     {% if smileI_list %}
     <ul>
     {% for raspberry in smileI_list %}
-        <li>{{raspberry.smileic}}</li>
+        <li>Count:{{raspberry.smileic}}&nbsp&nbsp&nbspMeasured time:{{raspberry.pushed_dateI}}</li>
     {% endfor %}
     </ul>
 {% else %}
@@ -16,7 +16,7 @@
     {% if smileS_list %}
     <ul>
     {% for raspberry in smileS_list %}
-        <li>{{raspberry.smilesc}}</li>
+        <li>Count:{{raspberry.smilesc}}&nbsp&nbsp&nbspMeasured time:{{raspberry.pushed_dateS}}</li>
     {% endfor %}
     </ul>
 {% else %}

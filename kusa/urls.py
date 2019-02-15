@@ -9,7 +9,7 @@ router.register(r'SmileIs',SmileIViewSet)
 router.register(r'SmileSs',SmileSViewSet)
 
 urlpatterns=[
-    path('',views.index,name='index'),
+    path('', views.index, name='index'),
     path('rasplist/',views.raspid,name='pk'),
-    path('raspsp/<int:rid>/',views.raspsp,name='raspsp'),
+    path('raspsp/<int:pk>/',views.raspsp,name='raspsp'),
 ]

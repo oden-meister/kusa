@@ -24,5 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include(raspberry_router.urls)),
     url(r'^api-auth/',obtain_jwt_token),
-    #path('', views.index, name="index"),
 ]
