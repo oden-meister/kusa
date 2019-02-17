@@ -17,6 +17,29 @@ int main(){
     //ここにループの回数を入力(負の数で無限)
     int time = -1,roop=0;
     //
+    std::string bfrc;
+    std::ifstream ifs(userdir+".kusarc");
+    if(ifs.fail()){
+        ifs.close();
+        std::ofstream ofs(userdir+".kusarc");
+        ofs<<"#\n#kusa\n#\n\n#Change 'X' to right number or character.\n\n";
+        ofs<<"IP=XXX.XXX.XXX.XXX:XXXX\n";
+        ofs<<"RASPNUMBER=X\n";
+        ofs<<"TOKEN=XXXXX\n";
+        ofs.close();
+        std::cout<<"Check "<<userdir<<".kusarc"<<std::endl;
+        exit(0);
+    }
+    else{
+        while (std::getline(ifs,bfrc)) {
+            if((bfrc[0]!='#')&&bfrc.empty()!=true){
+                if(bfrc.find("IP=")==0){IP=bfrc.erase(0,3);std::cout<<"IP="<<IP<<std::endl;}
+                if(bfrc.find("RASPNUMBER=")==0){RASPNUMBER=bfrc.erase(0,11);std::cout<<"RASPNUMBER="<<RASPNUMBER<<std::endl;}
+                if(bfrc.find("TOKEN=")==0){TOKEN=bfrc.erase(0,6);std::cout<<"TOKEN="<<TOKEN<<std::endl;}
+            }
+        }
+        ifs.close();
+    }
     cv::VideoCapture cap(0);
     if(!cap.isOpened()){
         std::cout<<"CAN NOT OPEN CAMERA\n";
