@@ -1,0 +1,20 @@
+{% extends 'kusa/base.html' %}
+{% load static %}
+{% block title %}KUSA{% endblock %}
+{% block content %}
+    <div class="topic">
+        <h2>&nbsp・草が生える機械(仮)について</h2>
+        &nbsp&nbsphogehoge
+    </div>
+    <div class="topic">
+        <h2>&nbsp・トークン取得方法</h2>
+        &nbsp&nbspターミナルで下記を入力
+        <input type="text" readonly="readonly" style="position: relative;left:10%;width: 80%;"  value="curl http://XXX.XX.XX.XXX:XXXX/api-auth/ -d &quot username=XXXXXXX&password=XXXXXXXX &quot">
+    </div>
+    <div class="topic">
+        <h2>&nbsp・計測方法</h2>
+        &nbsp&nbsp一秒間に一回計測し,一時間ごとに総回数が表示される.毎時間総数は0にリセットされる.
+    </div>
+    <br>
+    <div class="foot">草が生える機械(仮)について</div>
+{% endblock %}

@@ -8,8 +8,11 @@ from .serializer import raspberrySerializer,SmileISerializer,SmileSSerializer
 def index(request):
     return render(request,'kusa/index.html')
 
+def info(request):
+    return render(request,'kusa/info.html')
+
 def raspid(request):
-    latest_raspb_list=raspberry.objects.order_by('-pub_date')[:5]
+    latest_raspb_list=raspberry.objects.order_by('-pub_date')
     context={'latest_raspb_list':latest_raspb_list}
     return render(request, 'kusa/rasplist.html', context)
 

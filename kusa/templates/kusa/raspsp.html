@@ -1,6 +1,6 @@
 {% extends 'kusa/base.html' %}
 {% load static %}
-{% block title %}KUSA-RASPBERRYPY@{{raspbid}}{% endblock %}
+{% block title %}KUSA-{{raspbid}}の情報{% endblock %}
 {% block content %}
     <div class="topic">
     <h1>笑顔</h1>
@@ -11,7 +11,7 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p style="text-align: center">No SmileI are available.</p>
+    <p style="text-align: center">計測された笑顔はありません.</p>
 {% endif %}
     </div>
     <div class="topic">
@@ -23,8 +23,8 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p style="text-align: center">No SmileS are available.</p>
+    <p style="text-align: center">計測された笑い声はありません.</p>
 {% endif %}
     </div>
-    <div class="foot">個体名:{{ raspbid }}&nbsp&nbsp個体番号:{{ raspnum }}<a href="../../" style="position: fixed;bottom: 0px;right: 0px; font-size: 25px;">トップページへ</a></div>
+    <div class="foot">個体名:{{ raspbid }}&nbsp&nbsp個体番号:{{ raspnum }}</div>
 {% endblock %}

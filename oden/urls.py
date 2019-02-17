@@ -20,7 +20,7 @@ from kusa.urls import router as raspberry_router
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    path('kusa/',include('kusa.urls')),
+    path('kusa/',include('kusa.urls',namespace='kusa')),
     path('admin/', admin.site.urls),
     url(r'^api/', include(raspberry_router.urls)),
     url(r'^api-auth/',obtain_jwt_token),
