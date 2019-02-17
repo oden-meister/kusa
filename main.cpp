@@ -81,7 +81,7 @@ int main(){
             sout<<now->tm_year+1900<<"-"<<std::setfill('0')<<std::setw(2)<<now->tm_mon+1<<"-"<<std::setfill('0')<<std::setw(2)<<now->tm_mday<<"T"<<std::setfill('0')<<std::setw(2)<<now->tm_hour<<":"<<std::setfill('0')<<std::setw(2)<<now->tm_min<<":"<<std::setfill('0')<<std::setw(2)<<now->tm_sec;
             cmd+=sout.str();
             cmd+="\" -H \"Authorization: JWT "+TOKEN+"\"";
-            std::cout<<cmd<<std::endl;
+            //std::cout<<cmd<<std::endl;
             system(cmd.c_str());
             std::cout<<std::endl;
             cmd.clear();
