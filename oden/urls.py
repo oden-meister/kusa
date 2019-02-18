@@ -17,9 +17,11 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include,path
 from kusa.urls import router as raspberry_router
+from kusa.views import mainindex
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
+    path('',mainindex),
     path('kusa/',include('kusa.urls',namespace='kusa')),
     path('admin/', admin.site.urls),
     url(r'^api/', include(raspberry_router.urls)),

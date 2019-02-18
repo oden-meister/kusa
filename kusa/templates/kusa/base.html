@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static "kusa/favicon.png" %}">
     <link rel="stylesheet" href="{% static "kusa/temp.css" %}" type="text/css">
     <script type="text/javascript" language="JavaScript" src="{% static "kusa/temp.js" %}"></script>
     <title>{% block title %}{% endblock %}</title>
@@ -16,8 +17,7 @@
     <a href="{% url 'kusa:index' %}"><div class="menutopic">トップページ</div></a><br>
     <a href="{% url 'kusa:info' %}"><div class="menutopic">草が生える機械について</div></a><br>
     <a href="{% url 'kusa:pk' %}"><div class="menutopic">ラズベリーパイリスト</div></a><br>
-    <a href="dummy"><div class="menutopic">管理ページ</div></a><br>
-    <div class="menutopic" onclick="show();">閉じる</div>
+    <div id="clos" class="menutopic" onclick="show();">閉じる</div>
 </div>
 </body>
 </html>
