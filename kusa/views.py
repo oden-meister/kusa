@@ -25,7 +25,7 @@ def raspsp(request,pk):
     raspnum=pk
     smileI_list=raspberry.objects.get(id=pk).smilei_set.order_by('-pushed_dateI')[:5]
     smileS_list=raspberry.objects.get(id=pk).smiles_set.order_by('-pushed_dateS')
-    left=np.array([1,2,3,4,5])
+    left=np.array(['NEW','1h ago','2h ago','3h ago','4h ago'])
     height=np.array([0,0,0,0,0])
     flag=0
     filenamei='static/kusa/img/'+str([pk])+'SmileIG.png'
