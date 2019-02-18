@@ -36,6 +36,7 @@ def raspsp(request,pk):
     plt.savefig('kusa/static/kusa/SmileIG.png')
     plt.clf();
     height=np.array([0,0,0,0,0])
+    flag=0
     for rasp in smileS_list:
         height=np.insert(height,flag,rasp.smilesc)
         height=np.delete(height,5)
