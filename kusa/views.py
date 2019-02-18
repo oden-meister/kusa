@@ -28,24 +28,31 @@ def raspsp(request,pk):
     left=np.array([1,2,3,4,5])
     height=np.array([0,0,0,0,0])
     flag=0
+    filenamei='static/kusa/img/'+str([pk])+'SmileIG.png'
     for rasp in smileI_list:
         height=np.insert(height,flag,rasp.smileic)
         height=np.delete(height,5)
         flag+=1
     plt.plot(left,height)
-    plt.savefig('kusa/static/kusa/SmileIG.png')
+    plt.savefig(filenamei)
     plt.clf();
     height=np.array([0,0,0,0,0])
     flag=0
+    filenames = 'static/kusa/img/' + str([pk]) + 'SmileSG.png'
     for rasp in smileS_list:
         height=np.insert(height,flag,rasp.smilesc)
         height=np.delete(height,5)
         flag+=1
     plt.plot(left,height)
-    plt.savefig('kusa/static/kusa/SmileSG.png')
+    plt.savefig(filenames)
+    plt.clf()
+    filenamei = 'kusa/img/' + str([pk]) + 'SmileIG.png'
+    filenames = 'kusa/img/' + str([pk]) + 'SmileSG.png'
     context={
         'smileI_list':smileI_list,
         'smileS_list':smileS_list,
+        'imagesmilei':filenamei,
+        'imagesmiles':filenames,
         'raspbid':raspbid,
         'raspnum':raspnum
     }
