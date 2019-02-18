@@ -33,7 +33,15 @@ def raspsp(request,pk):
         height=np.delete(height,5)
         flag+=1
     plt.plot(left,height)
-    plt.savefig('kusa/static/kusa/figure.png')
+    plt.savefig('kusa/static/kusa/SmileIG.png')
+    plt.clf();
+    height=np.array([0,0,0,0,0])
+    for rasp in smileS_list:
+        height=np.insert(height,flag,rasp.smilesc)
+        height=np.delete(height,5)
+        flag+=1
+    plt.plot(left,height)
+    plt.savefig('kusa/static/kusa/SmileSG.png')
     context={
         'smileI_list':smileI_list,
         'smileS_list':smileS_list,

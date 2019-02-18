@@ -16,7 +16,7 @@
     </div>
     <div class="topic">
     <h1>直近24時間</h1>
-    <img src="{% static 'kusa/figure.png' %}" style="height: 400px;width: 700px;">
+    &nbsp&nbsp<img src="{% static 'kusa/SmileIG.png' %}" style="height: 40vh;width: 60vw;">
     </div>
     <div class="topic">
     <h1>笑い声</h1>
@@ -29,6 +29,10 @@
 {% else %}
     <p style="text-align: center">計測された笑い声はありません.</p>
 {% endif %}
+    </div>
+    <div class="topic">
+    <h1>直近24時間</h1>
+    &nbsp&nbsp<img src="{% static 'kusa/SmileSG.png' %}" style="height: 40vh;width: 60vw;">
     </div>
     <div class="foot">個体名:{{ raspbid }}&nbsp&nbsp個体番号:{{ raspnum }}</div><br>
 {% endblock %}
