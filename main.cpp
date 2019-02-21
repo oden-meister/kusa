@@ -70,7 +70,7 @@ int main(){
         if(elapsedMsec>=1000){
             std::string filename = "haarcascade_frontalface_default.xml";
             cv::Mat detectFaceImage = faceFind(frame, filename);
-            cv::imshow("detect face",detectFaceImage);
+            //cv::imshow("detect face",detectFaceImage);
             start=cv::getTickCount();
             roop++;
         }
