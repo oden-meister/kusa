@@ -25,7 +25,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 LIBS += -L/usr/lib `pkg-config --libs opencv`
 
 DISTFILES += \
-    haarcascade_frontalface_default.xml
+    haarcascade_frontalface_default.xml \
+    haarcascade_smile.xml
 
 HEADERS += \
     main.h
