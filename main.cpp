@@ -26,6 +26,7 @@ int main(){
         ofs<<"IP=XXX.XXX.XXX.XXX:XXXX\n";
         ofs<<"RASPNUMBER=X\n";
         ofs<<"TOKEN=XXXXX\n";
+        ofs<<"ESECOND=X\n";
         ofs.close();
         std::cout<<"Check "<<userdir<<".kusarc"<<std::endl;
         exit(0);
@@ -36,6 +37,7 @@ int main(){
                 if(bfrc.find("IP=")==0){IP=bfrc.erase(0,3);std::cout<<"IP="<<IP<<std::endl;}
                 if(bfrc.find("RASPNUMBER=")==0){RASPNUMBER=bfrc.erase(0,11);std::cout<<"RASPNUMBER="<<RASPNUMBER<<std::endl;}
                 if(bfrc.find("TOKEN=")==0){TOKEN=bfrc.erase(0,6);std::cout<<"TOKEN="<<TOKEN<<std::endl;}
+                if(bfrc.find("ESECOND=")==0){ESECOND=std::stoi(bfrc.erase(0,8));std::cout<<"ESECOND="<<ESECOND<<std::endl;}
             }
         }
         ifs.close();
@@ -71,10 +73,11 @@ int main(){
             std::string filename = "haarcascade_frontalface_default.xml";
             cv::Mat detectFaceImage = faceFind(frame, filename);
             //cv::imshow("detect face",detectFaceImage);
+            //cv::waitKey(0);
             start=cv::getTickCount();
             roop++;
         }
-        if(roop==10){
+        if(roop==ESECOND){
             cmd="curl -X POST "+IP+"/api/SmileIs/ -d \"rasp="+RASPNUMBER+"\" -d \"smileic=";
             cmd+=std::to_string(countf);
             cmd+="\" -d \"pushed_dateI=";
