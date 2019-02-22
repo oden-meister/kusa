@@ -12,6 +12,7 @@
 #include<sys/stat.h>
 
 extern int countf=0;//認識した顔の総数
+extern bool smile=false;
 extern int ESECOND=10;
 extern std::string username=getenv("USER"),userdir="/home/"+username+"/";
 extern std::string RASPNUMBER="";

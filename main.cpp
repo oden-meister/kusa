@@ -1,14 +1,27 @@
 #include "main.h"
 
-cv::Mat faceFind(cv::Mat &image,std::string &cascade_file){
-    cv::CascadeClassifier cascade;
-    cascade.load(cascade_file);
-    std::vector<cv::Rect> faces;
-    cascade.detectMultiScale(image, faces, 1.1,3,0,cv::Size(20,20));
+cv::Mat faceFind(cv::Mat &image,std::string &facecascade,std::string &smilecascade,int SmilingBorder){
+    cv::CascadeClassifier face_cascade, smile_cascade;
+    face_cascade.load(facecascade);
+    smile_cascade.load(smilecascade);
+    std::vector<cv::Rect> faces, smiles;
+
+    face_cascade.detectMultiScale(image, faces, 1.1,3,0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20,20));
+
     std::cout << "Faces " << faces.size() << std::endl;
     countf+=faces.size();
     for (int i = 0; i < faces.size(); i++){
         rectangle(image, cv::Point(faces[i].x,faces[i].y),cv::Point(faces[i].x + faces[i].width,faces[i].y + faces[i].height),cv::Scalar(0,200,0),3,CV_AA);
+        faces[i].y += faces[i].height/2;
+        faces[i].height = faces[i].height/2 - 1;
+        smile_cascade.detectMultiScale(image, smiles, 1.1,0,0 | cv::CASCADE_SCALE_IMAGE,cv::Size(20,20));
+        const int FrequencyOfSmiling = (int)smiles.size();
+        std::cout << "FOS = " << FrequencyOfSmiling << std::endl;
+        if(FrequencyOfSmiling >= SmilingBorder){
+            rectangle(image, cv::Point(faces[i].x,faces[i].y),cv::Point(faces[i].x + faces[i].width,faces[i].y + faces[i].height),cv::Scalar(0,0,200),3,CV_AA);
+            std::cout << "Good Smile!" << std::endl;
+            smile=true;
+        }
     }
     return image;
 }
@@ -70,12 +83,17 @@ int main(){
         end=cv::getTickCount();
         double elapsedMsec=(end-start)*1000/cv::getTickFrequency();
         if(elapsedMsec>=1000){
-            std::string filename = "haarcascade_frontalface_default.xml";
-            cv::Mat detectFaceImage = faceFind(frame, filename);
+            std::string filename1 = "haarcascade_frontalface_default.xml";
+            std::string filename2 = "haarcascade_smile.xml";
+            cv::Mat detectFaceImage = faceFind(frame, filename1, filename2,50);//ここの一番右の数値をいじって、ちょうど笑ってる時だけ反応するようにして(画像のサイズに依存するらしいので本番用カメラでやって)出力されるFOSがその画像の数値で、笑ってるほど高くなるはず
             //cv::imshow("detect face",detectFaceImage);
             //cv::waitKey(0);
             start=cv::getTickCount();
             roop++;
+        }
+        if(roop==10&&smile==true){
+            system("curl localhost:3000/mt");
+            smile=false;
         }
         if(roop==ESECOND){
             cmd="curl -X POST "+IP+"/api/SmileIs/ -d \"rasp="+RASPNUMBER+"\" -d \"smileic=";
