@@ -9,7 +9,6 @@ cv::Mat faceFind(cv::Mat &image,std::string &facecascade,std::string &smilecasca
     face_cascade.detectMultiScale(image, faces, 1.1,3,0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20,20));
 
     std::cout << "Faces " << faces.size() << std::endl;
-    countf+=faces.size();
     for (int i = 0; i < faces.size(); i++){
         rectangle(image, cv::Point(faces[i].x,faces[i].y),cv::Point(faces[i].x + faces[i].width,faces[i].y + faces[i].height),cv::Scalar(0,200,0),3,CV_AA);
         faces[i].y += faces[i].height/2;
@@ -21,6 +20,7 @@ cv::Mat faceFind(cv::Mat &image,std::string &facecascade,std::string &smilecasca
             rectangle(image, cv::Point(faces[i].x,faces[i].y),cv::Point(faces[i].x + faces[i].width,faces[i].y + faces[i].height),cv::Scalar(0,0,200),3,CV_AA);
             std::cout << "Good Smile!" << std::endl;
             smile=true;
+           countf++;
         }
     }
     return image;
@@ -85,14 +85,14 @@ int main(){
         if(elapsedMsec>=1000){
             std::string filename1 = "haarcascade_frontalface_default.xml";
             std::string filename2 = "haarcascade_smile.xml";
-            cv::Mat detectFaceImage = faceFind(frame, filename1, filename2,50);//ここの一番右の数値をいじって、ちょうど笑ってる時だけ反応するようにして(画像のサイズに依存するらしいので本番用カメラでやって)出力されるFOSがその画像の数値で、笑ってるほど高くなるはず
+            cv::Mat detectFaceImage = faceFind(frame, filename1, filename2,750);//ここの一番右の数値をいじって、ちょうど笑ってる時だけ反応するようにして(画像のサイズに依存するらしいので本番用カメラでやって)出力されるFOSがその画像の数値で、笑ってるほど高くなるはず
             //cv::imshow("detect face",detectFaceImage);
             //cv::waitKey(0);
             start=cv::getTickCount();
             roop++;
         }
         if(roop==10&&smile==true){
-            system("curl localhost:3000/mt");
+            //system("curl localhost:3000/mt");
             smile=false;
         }
         if(roop==ESECOND){
