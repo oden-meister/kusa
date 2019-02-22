@@ -20,6 +20,7 @@ cv::Mat faceFind(cv::Mat &image,std::string &facecascade,std::string &smilecasca
             rectangle(image, cv::Point(faces[i].x,faces[i].y),cv::Point(faces[i].x + faces[i].width,faces[i].y + faces[i].height),cv::Scalar(0,0,200),3,CV_AA);
             std::cout << "Good Smile!" << std::endl;
             smile=true;
+            amountf+=FrequencyOfSmiling;
            countf++;
         }
     }
@@ -102,6 +103,16 @@ int main(){
             sout<<now->tm_year+1900<<"-"<<std::setfill('0')<<std::setw(2)<<now->tm_mon+1<<"-"<<std::setfill('0')<<std::setw(2)<<now->tm_mday<<"T"<<std::setfill('0')<<std::setw(2)<<now->tm_hour<<":"<<std::setfill('0')<<std::setw(2)<<now->tm_min<<":"<<std::setfill('0')<<std::setw(2)<<now->tm_sec;
             cmd+=sout.str();
             cmd+="\" -H \"Authorization: JWT "+TOKEN+"\"";
+            system(cmd.c_str());
+            cmd.clear();
+            sout.str("");
+            sout.clear(std::stringstream::goodbit);
+            cmd="curl -X POST "+IP+"/api/FOSs/ -d \"rasp="+RASPNUMBER+"\" -d \"fosc=";
+            cmd+=std::to_string(amountf);
+            cmd+="\" -d \"pushed_dateF=";
+            sout<<now->tm_year+1900<<"-"<<std::setfill('0')<<std::setw(2)<<now->tm_mon+1<<"-"<<std::setfill('0')<<std::setw(2)<<now->tm_mday<<"T"<<std::setfill('0')<<std::setw(2)<<now->tm_hour<<":"<<std::setfill('0')<<std::setw(2)<<now->tm_min<<":"<<std::setfill('0')<<std::setw(2)<<now->tm_sec;
+            cmd+=sout.str();
+            cmd+="\" -H \"Authorization: JWT "+TOKEN+"\"";
             //std::cout<<cmd<<std::endl;
             system(cmd.c_str());
             std::cout<<std::endl;
@@ -110,6 +121,7 @@ int main(){
             sout.clear(std::stringstream::goodbit);
             roop=0;
             countf=0;
+            amountf=0;
         }
     }
     std::cout << "Program is ended" << std::endl;
