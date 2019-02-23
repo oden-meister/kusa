@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
 import pyaudio
-import numpy as np
 import scipy.signal
 import scipy.fftpack
 import scipy.fftpack.realtransforms
 import wave
 import csv
+import time
 import subprocess
 from sklearn .neighbors import KNeighborsClassifier
 CHUNK = 1024
@@ -85,6 +85,7 @@ y_train=waraidf.label
 x_train=waraidf.drop('label',axis=1)
 knn = KNeighborsClassifier(n_neighbors=1)
 knn.fit(x_train,y_train)
+start=time.time()
 while True:
     p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT,channels=CHANNELS,rate=RATE,input=True,frames_per_buffer=CHUNK)
@@ -118,5 +119,10 @@ while True:
     X_new=x_testna.values
     prediction1 = knn.predict(X_new)
     print(prediction1)
-    if prediction1==1:
-        res=subprocess.call(["curl","localhost:3000/mt"])
+    #if prediction1==1:
+        #res=subprocess.call(["curl","localhost:3000/mt"])
+    elapsed_time = time.time() - start
+    #if elapsed_time>=10:
+      #print(elapsed_time)
+      #start=time.time()
+      #subprocess.call(["curl",""])
