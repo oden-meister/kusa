@@ -9,9 +9,9 @@ import csv
 import time
 import subprocess
 from sklearn .neighbors import KNeighborsClassifier
-CHUNK = 1024
+CHUNK = 1024*4
 FORMAT = pyaudio.paInt16
-CHANNELS = 2
+CHANNELS = 1
 RATE = 44100
 RECORD_SECONDS = 5
 WAVE_OUTPUT_FILENAME = "output.wav"
