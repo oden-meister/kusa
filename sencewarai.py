@@ -79,7 +79,7 @@ def get_feature(wavfile,nfft,nceps):
   ceps = mfcc(wavdata, nfft, fs, nceps)
   return ceps.tolist()
 
-warai=pd.read_csv("/home/minfaox3/sence-warai/datasets_warai.csv")
+warai=pd.read_csv("datasets_warai.csv")
 waraidf=pd.DataFrame(warai)
 y_train=waraidf.label
 x_train=waraidf.drop('label',axis=1)
